@@ -1,0 +1,19 @@
+require "net/simple_server"
+
+server = Net::SimpleServer.new(ENV['PORT'])
+
+i = 0
+
+server.get("/") do |req, res|
+  puts(i)
+  i = i+1
+  res.body = "Hello Platform.sh Goby Demo"
+  res.status = 200
+end
+
+server.get("/not_found") do |req, res|
+  res.body = "Not Found"
+  res.status = 404
+end
+
+server.start

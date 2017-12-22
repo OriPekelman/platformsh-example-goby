@@ -1,0 +1,22 @@
+name: app
+type: golang:1.9
+
+hooks:
+    build: go get -u github.com/goby-lang/goby
+relationships:
+    postgresql: "postgresql:postgresql"
+
+web:
+    upstream:
+        socket_family: tcp
+        protocol: http
+
+    commands:
+        start: GOBY_ROOT=~/go/src/github.com/goby-lang/goby ~/go/bin/goby index.gb
+
+    locations:
+        /:
+            allow: false
+            passthru: true
+
+disk: 2048
