@@ -1,8 +1,8 @@
 require 'net/simple_server'
 
-server = Net::SimpleServer.new(ENV['PORT']) 
+server = Net::SimpleServer.new ENV['PORT']
 
-server.get('\') do |request, response|
+server.get "\" do |request, response|
   response.status = 200
   response.body   = 'Hello Visitor!'
   response.set_header('Content-Type', 'text/plain')
