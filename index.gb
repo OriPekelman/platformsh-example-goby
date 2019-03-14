@@ -1,19 +1,11 @@
-require "net/simple_server"
+require 'net/simple_server'
 
-server = Net::SimpleServer.new(ENV['PORT'])
+server = Net::SimpleServer.new(ENV['PORT']) 
 
-i = 0
-
-server.get("/") do |req, res|
-  puts(i)
-  i = i+1
-  res.body = "Hello Platform.sh Goby Demo"
-  res.status = 200
+server.get('\') do |request, response|
+  response.status = 200
+  response.body   = 'Hello Visitor!'
+  response.set_header('Content-Type', 'text/plain')
 end
 
-server.get("/not_found") do |req, res|
-  res.body = "Not Found"
-  res.status = 404
-end
-
-server.start
+server.start 

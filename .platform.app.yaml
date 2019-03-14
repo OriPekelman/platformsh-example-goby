@@ -1,5 +1,5 @@
 name: app
-type: golang:1.9
+type: golang:1.11
 
 hooks:
     build: go get -u github.com/goby-lang/goby
